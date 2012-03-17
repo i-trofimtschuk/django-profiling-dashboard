@@ -32,8 +32,8 @@ class YappiManageForm(forms.Form):
 
 class YappiFilterForm(forms.Form):
     SORT_ORDER = (
-        (yappi.SORTORDER_ASCENDING, 'asc'),
-        (yappi.SORTORDER_DESCENDING, 'desc'),
+        (yappi.SORTORDER_ASC, 'asc'),
+        (yappi.SORTORDER_DESC, 'desc'),
     )
 
     SORT_TYPE = (
@@ -41,11 +41,11 @@ class YappiFilterForm(forms.Form):
         (yappi.SORTTYPE_NCALL, 'total call count of the function'),
         (yappi.SORTTYPE_TAVG, 'average total time'),
         (yappi.SORTTYPE_TSUB, 'total time spent in the function excluding sub-calls'),
-        (yappi.SORTTYPE_TTOTAL, 'total time spent in the function'),
+        (yappi.SORTTYPE_TTOT, 'total time spent in the function'),
     )
 
-    sort_order = forms.TypedChoiceField(choices=SORT_ORDER, initial=yappi.SORTORDER_DESCENDING, coerce=int, widget=forms.HiddenInput())
-    sort_type = forms.TypedChoiceField(choices=SORT_TYPE, initial=yappi.SORTTYPE_TTOTAL, coerce=int, widget=forms.HiddenInput())
+    sort_order = forms.TypedChoiceField(choices=SORT_ORDER, initial=yappi.SORTORDER_DESC, coerce=int, widget=forms.HiddenInput())
+    sort_type = forms.TypedChoiceField(choices=SORT_TYPE, initial=yappi.SORTTYPE_TTOT, coerce=int, widget=forms.HiddenInput())
     limit = forms.IntegerField(initial=20, help_text='-1 means no limit')
 
     def get_stats(self):
